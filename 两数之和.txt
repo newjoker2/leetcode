@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int length=nums.size();
+        vector<int>  loc;
+        int i,Pos;
+        for( i=0;i<length;i++)
+        {
+          
+                int  mid=target-nums[i];
+                vector<int>::iterator it = find(nums.begin(), nums.end(), mid);  
+                 if (it != nums.end())  
+                 { 
+                     Pos = distance(nums.begin(),it); 
+                     if(Pos!=i)
+                     break;
+                 }
+                
+            
+        }
+        loc.push_back(i);
+        loc.push_back(Pos);
+        return loc;
+    }
+};
