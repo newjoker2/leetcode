@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        int length=s.length();
+        int a[26]={0};
+        int flag;
+        for(int i=0;i<length;i++)
+        {
+            int result=s[i]-'a';
+            a[result]++;
+        }
+        for(int i=0;i<length;i++)
+        {  
+            int re=s[i]-'a';
+            if(a[re]==1)
+                return i;
+        }
+        return -1;
+    
+    }
+};

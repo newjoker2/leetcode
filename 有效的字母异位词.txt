@@ -1,0 +1,27 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        int length1=s.length();
+        int length2=t.length();
+        int length=max(length1,length2);
+        int as[26]={0};
+        int ts[26]={0};
+        for(int i=0;i<length1;i++)
+        {
+            int rest=s[i]-'a';
+            as[rest]++;
+        }
+          for(int i=0;i<length2;i++)
+        {
+            int rest=t[i]-'a';
+            ts[rest]++;
+        }
+        for(int i=0;i<26;i++)
+        {
+            if(as[i]!=ts[i])
+                return false;
+            
+        }
+        return true;
+    }
+};

@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int reverse(int x) {
+        long result=0L;
+        while(x!=0)
+        {
+            result=result*10+x%10;
+            x=x/10;
+        }
+        //判断是否会溢出    把这条语句放到while循环里：if(n/10!=i)return 0; 这样判断也行   如果越界第一位的数值一定不一样
+        if (result >INT_MAX || result < INT_MIN) {  
+            return 0;  
+        }  
+        return (int)result;  
+    }
+};
