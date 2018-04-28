@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int myAtoi(string str) {
+       if(str.empty()) return 0;
+        int i=0;//第一个数字
+        int length=str.length();
+        int flag=1;
+        long long result=0L;
+        while(i<length&&str[i]==' ')
+            ++i;
+        if(str[i]=='+'||str[i]=='-')
+        {
+            flag=(str[i++]=='-')?-1:1;
+        }
+        while(i<length&&str[i]>='0'&&str[i]<='9')
+        {   
+             if (result > INT_MAX / 10 || (result == INT_MAX / 10 && str[i] - '0' > 7)) {
+                return (flag == 1) ? INT_MAX : INT_MIN;
+             }
+            result=result*10+(str[i]-'0');
+            i++;
+        }
+       // cout<<result;
+     return  result*flag;
+    }
+};

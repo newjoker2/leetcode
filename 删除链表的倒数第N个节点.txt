@@ -1,0 +1,102 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* left,*right,*p;
+        p=new ListNode(0);
+        right=head;
+        p->next=head;
+        left=p;
+        for(int i=0;i<n;i++)
+        {
+            right=right->next;
+        }
+        while(right)
+        {
+            right=right->next;
+            left=left->next;
+        }
+        ListNode* t1=left->next;
+        if(t1)
+        {
+            left->next=t1->next;
+        }
+        ListNode* t2;
+        t2=p->next;
+        return t2;
+        
+    }
+};
+/*
+class Solution{  
+public:  
+    ListNode* removeNthFromEnd(ListNode* head, int n){  
+        ListNode *cur=head;  
+        ListNode *pre=head;  
+        for(int i=0;i<n;i++)  
+        {  
+            cur=cur->next;  
+        }  
+        if(!cur)  //cur 为空的话 说明n为链表大小，删除第一个元素，倒数第n（n为链表大小）个
+        {  
+            head=head->next;  
+            return head;  
+        }  
+        while(cur->next)  //cur没有到尾，知道它到尾后pre就到了要删的那个元素。
+        {  
+            pre=pre->next;  
+            cur=cur->next;  
+        }  
+        pre->next=pre->next->next;  
+        return head;  
+    }  
+};  
+*/
+
+
+/* 递归实现
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        if (remove(head, n) > 0) {
+            return head.next;   
+        }
+
+        return head;
+    }
+
+    private int remove(ListNode node, int n) {
+        if (node.next == null) return 1;
+        int rank;
+        rank = remove(node.next, n) + 1;
+
+        // the way to delete the nth node
+        // is to set the (n-1)th node's next
+        // as nth node's next
+        // [tricky] return a very big negtive number
+        // to indicate we are success
+        if (rank == n + 1) {
+            node.next = node.next.next;
+            return Integer.MIN_VALUE;
+        }
+        return rank;
+    }
+}
+*/
