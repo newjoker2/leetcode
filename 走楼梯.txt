@@ -1,0 +1,14 @@
+int climbStairs(int n) {
+    if(n==0||n==1||n==2)
+    {
+        return n;
+    }
+    int result[n+1];
+    result[1]=1;
+    result[2]=2;
+    for(int i=3;i<=n;i++) //i表示第i时的情况
+    {
+        result[i]=result[i-1]+result[i-2];//前两次情况的相加，一步和两步的情况
+    }
+    return result[n];
+}

@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int length=prices.size();
+        if(length==0)
+            return 0;//没有考虑输入为空的情况也不行
+        int max_price=0;//当前最大差价
+        int low=prices[0];//记录当前遇到的最小价（买入价）
+        for(int i=0;i<length;i++)
+        {   
+            if(max_price<=prices[i]-low)
+                max_price=prices[i]-low;
+            if(low>=prices[i])
+                low=prices[i];
+            
+        }
+        return max_price;
+    }
+};
