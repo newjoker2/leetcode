@@ -1,0 +1,13 @@
+class Solution {
+public:
+    uint32_t reverseBits(uint32_t n) {
+        int i;  
+        uint32_t res=0;  
+        for(i=0;i<32;i++)  
+        {  
+            res=(res<<1)^(n&1);    //res左移一位，腾出最后一位放n的当前的最后一位
+            n>>=1;  
+        }  
+        return res;  
+    }
+};

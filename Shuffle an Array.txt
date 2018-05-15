@@ -1,0 +1,40 @@
+class Solution {
+   private:  
+    vector<int> result_rand,result;   
+    int length;  
+    
+public:
+    Solution(vector<int> nums) {
+        result=nums;
+        result_rand=nums;
+        length=nums.size();
+        srand(time(NULL)); //初始化随机种子，以当前时间与1970年时间秒数作为，只需要调用一次
+    }
+    
+    /** Resets the array to its original configuration and return it. */
+    vector<int> reset() {
+        return result;
+        
+    }
+    
+    /** Returns a random shuffling of the array. */
+    vector<int> shuffle() {
+        int  tmp;
+        for(int i=0;i<length;i++)
+        {
+            int r=rand()%length;//rand 产生一个length内的随机数
+            tmp=result_rand[i];
+            result_rand[i]=result_rand[r];
+            result_rand[r]=tmp;
+        }
+        return result_rand;
+        
+    }
+};
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution obj = new Solution(nums);
+ * vector<int> param_1 = obj.reset();
+ * vector<int> param_2 = obj.shuffle();
+ */

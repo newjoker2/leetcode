@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int hammingWeight(uint32_t n) {
+        int res=0;
+        while(n)
+        {
+            n=n&(n-1); 
+            res++;
+        }
+        return res;
+    }
+};
+/* 普通的 ：对于32位无符号整型数
+for(int i=0;i<32;i++)
+{
+	res+=(n>>i)&1;  看n的第i位是不是1;
+}
+
+
+
+*/

@@ -1,0 +1,30 @@
+//直接判断  会超时
+class Solution {
+public:
+    bool isPowerOfThree(int n) {
+     int  res=1;
+        while(n>=res)
+        {   
+            if(res==n)
+                return true;
+            
+            res=res*3;
+        }
+        return false;
+    }
+};
+//转换成对数
+class Solution {
+public:
+    bool isPowerOfThree(int n) {
+          if(n<=0) return false;
+      
+        //log 以10为底   n的对数，，，logab = logcb / logca
+        if((int(log10(n) / log10(3)) - log10(n) / log10(3) )==0)
+            return true;
+        else  return false;
+    }
+};
+// 还有一种  3的19方=1162261467 (int 型表示最大的3的幂)  看能不能被这个数整除
+
+
