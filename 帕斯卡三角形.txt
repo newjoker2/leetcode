@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        
+        vector<int>   col;
+        vector<vector<int>> result;
+        if(numRows==0) return result;
+        col.push_back(1);
+        result.push_back(col);
+         if(numRows==1) return  result;
+        col.push_back(1);
+        result.push_back(col);
+        col.clear();
+        for(int i=2;i<numRows;i++)
+        {   
+            col.clear();
+            col.push_back(1);
+            for(int j=0;j<i-1;j++)
+            {
+                int tmp=result[i-1][j]+result[i-1][j+1];
+                col.push_back(tmp);
+                
+            }
+            col.push_back(1);
+            result.push_back(col);
+        }
+        return result;
+    }
+};

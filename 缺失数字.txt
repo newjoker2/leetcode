@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+       int length=nums.size();// 0µ½length
+       int flag[length+100]; 
+        for(int i=0;i<length+1;i++)
+            flag[i]=0;
+        for(int i=0;i<length;i++)
+        {
+            flag[nums[i]]=1;
+        }
+        for(int i=0;i<length+1;i++)
+        {
+            if(flag[i]==0) 
+                return i;
+        }
+    }
+};
