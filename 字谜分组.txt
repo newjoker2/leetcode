@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+    map<multiset<char>, int> mp;  //multiset 按照特定的顺序排序 ，可重复
+    int num = 0;  
+    vector<vector<string>> res;        //二维数组 string
+    for (int i = 0; i < strs.size(); ++i) {  
+        multiset<char> ts;  
+        for (int j = 0; j < strs[i].size(); ++j)  
+            ts.insert(static_cast<char>(strs[i][j]));  
+        if (mp.find(ts) == mp.end()) { //ts中这个单词没出现过  
+            mp.insert({ts, num});  //将它添加到mp中去
+            res.push_back(vector<string>());  //这是需要新加一个维  放新出现的单词
+            res[num++].push_back(strs[i]);  
+        } else {  
+            res[mp.find(ts)->second].push_back(strs[i]);  //注意mp.find(ts)->second 得到num 的值
+            
+        }  
+    }  
+    return res;  
+    }
+};
