@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool increasingTriplet(vector<int>& nums) {
+       int left=INT_MAX,right=INT_MAX;
+        if(nums.size()==0) return false;
+       for(int i=0;i<nums.size();i++)
+       {
+           if(nums[i]<=left) left=nums[i];
+           else if(nums[i]<=right) right=nums[i];//nums[i]比left小  幅值给left，比right小（但是比left大，幅值给right，确定了两个顺序）
+           else  return true;
+           
+       }
+        return false;
+        
+    }
+};
