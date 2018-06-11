@@ -1,0 +1,27 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        if(!head||!head->next) return head;
+        ListNode* l=head;
+        ListNode* odd=head,*even=head->next;//odd 为当前奇数链的最后，even为偶数链的最后
+        while(even!=NULL&&even->next!=NULL)//even->next==NULL时，even为最后一个数  遍历完了，偶数个节点的情况
+        {
+            ListNode* tmp=odd->next;//tmp用来保存偶数链的第一个数
+            odd->next=even->next;
+            even->next=even->next->next;
+            odd->next->next=tmp;
+            odd=odd->next;
+            even=even->next;
+        }
+        return head;
+        
+    }
+};
