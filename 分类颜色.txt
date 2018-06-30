@@ -1,0 +1,36 @@
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+            int zero=-1; //从[0，zero] 为0
+            int  two=nums.size();  //从[two,nums.size()-1]为2
+            int   i;//从[zero+1，i]为1
+            int  tmp;//用于交换的中间变量
+        for(i=0;i<two;)
+        {
+            switch(nums[i])
+            {   
+                case 1:{
+                    i++;
+                    break;
+                }
+                case 0: {
+                      tmp=nums[i];
+                      nums[i]=nums[zero+1];
+                      nums[zero+1]=tmp;
+                      zero++;
+                      i++;//这个已经遍历过了  一定是1
+                    break;
+                }
+                case 2:{
+                      tmp=nums[two-1];
+                      nums[two-1]=nums[i];
+                    nums[i]=tmp;//交换元素  用  swap（a,b）;
+                    two--;//先写two--，就不用上面写two-1了，                 
+                    break;
+                }
+                
+            }
+        }
+        
+    }
+};
