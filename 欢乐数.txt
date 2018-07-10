@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool isHappy(int n) {
+        set<int>  res;
+        res.insert( n );
+        while(n != 1)
+        {   
+            vector<int>  record;
+        
+          while( n )
+            {
+                int f = n % 10;
+                record.push_back( f );
+                n = n / 10;
+            }
+          record.push_back( n );
+            int num=0;
+        for(int i = 0; i < record.size();i++)
+        {
+            
+             num += record[i]*record[i];
+            
+        }
+        if(res.find(num) != res.end() )
+            return false;
+        else
+            res.insert( num );
+        n = num;
+        }
+        return true;
+    }
+};

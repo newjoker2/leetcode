@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool wordPattern(string pattern, string str) {
+        map<char,string>  record;
+        int i=0;
+        istringstream  in(str);//ÔõÃ´ÓÃ
+        for(string word; in >> word; i++ )
+        {
+            if(record.find(pattern[i]) != record.end()){
+                if(record[pattern[i]] != word) 
+                      return false;
+            }  else{
+                for(map<char,string> :: iterator  it = record.begin(); it != record.end(); it++)
+                {
+                    if(it->second == word) return false;
+                    
+                }
+                record[pattern[i]] = word;
+                
+            } 
+            
+        }
+        return i == pattern.size();
+    }
+};

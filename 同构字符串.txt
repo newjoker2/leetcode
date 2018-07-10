@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+            map<char,char>  record;
+            if(s.size() != t.size() )
+                return false;
+            for(int i=0;i < s.size(); i++)
+            {
+                 if(record.find(s[i]) != record.end()){
+                     if(record[s[i]] != t[i] )
+                         return false;
+                 }else {
+                     for(map<char,char> :: iterator it=record.begin();it != record.end(); it++)
+                     {
+                         if(it -> second == t[i]) return false;
+                         
+                     }
+                 }
+                 record[s[i]] = t[i];
+            }
+            return true;
+        
+        
+    }
+};

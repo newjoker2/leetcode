@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<int> findAnagrams(string s, string p) {
+        vector<int> a;
+        map<char,int> m;
+        if(s.size()==0 || p.size()==0 || s.size() < p.size())
+            return a;
+        for(int i=0;i<p.size();i++){
+            if(m.find(p[i])!=m.end())
+                ++m[p[i]];
+            else
+                m[p[i]]=1;
+        }
+        int left=0,right=0,count=p.size();
+        while(right<s.size()){
+            --m[s[right]];
+            if(m[s[right]]>=0) --count;
+            if(right-left==(p.size()-1)){
+                if(count==0) a.push_back(left);
+                
+                if(m[s[left]]>=0) ++count;
+                ++m[s[left]];
+                ++left;
+                
+            }
+            
+            
+            ++right;
+        }
+
+        return a;
+        
+    }
+};
