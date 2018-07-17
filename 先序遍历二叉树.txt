@@ -1,0 +1,39 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+
+struct Commend{
+    string s;//go or print
+    TreeNode* node;
+    Commend(string s, TreeNode* node): s(s),node(node) {}
+};
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+          vector<int> res;
+          if( root == NULL ) return res;
+          stack<Commend> stack;
+          stack.push(Commend( "go" , root ));
+          while( !stack.empty() )
+          {
+              Commend tmp = stack.top();
+              stack.pop();
+              if( tmp.s == "print" ) res.push_back( tmp.node->val );
+              else{
+                 
+                  if( tmp.node->right != NULL )
+                      stack.push(Commend( "go" , tmp.node->right ));
+                  if(tmp.node->left != NULL ) 
+                      stack.push(Commend( "go" , tmp.node->left ));
+ 			stack.push( Commend( "print" ,tmp.node ));
+              }
+          }
+        return res;
+    }
+};
