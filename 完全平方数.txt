@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int numSquares(int n) {
+        
+        queue< pair<int,int> >  q;  //pair<int ,int >  第几个数 和 数值
+        q.push( make_pair( 0 , n ) );
+        
+        vector<bool>  visited(n+1, false);
+        visited[n] = true;
+        while( !q.empty() ){
+             int count = q.front().first;
+             int num = q.front().second;
+            q.pop();
+            for(int i = 1; ; i++ )
+            {
+                int a = num -i*i;
+                if( a < 0)
+                    break;
+                if( a == 0)
+                    return count + 1;
+                if( !visited[a] )
+                    { 
+                        q.push( make_pair( count + 1, a ));
+                        visited[a]  = true;
+                    }
+            }
+        }
+         
+            
+            
+        
+    }
+};
